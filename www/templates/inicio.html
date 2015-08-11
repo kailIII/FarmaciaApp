@@ -1,0 +1,49 @@
+<ion-view title="App-Farm">
+    <ion-content class="padding inicio">
+        
+        <!-- Filtro por departamento -->
+        <div class="center">
+           <a href="" class="button sinBorde" ng-click="openPopover()">{{bydepartamento + " | "}}<i class="icon ion-map"></i></a>
+        </div>
+
+        <!-- Buscador -->
+        <div class="list list-inset">
+          <label class="item item-input" id="buscador">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="search" placeholder="Busca algo que te haga sentir mejor" ng-model="producto" ng-change="cargarProductos(producto)">
+            <i class="icon placeholder-icon padding-right" ng-show="productos.length"><span>{{productos.length}}</span></i>
+          </label>
+        </div>
+
+        <!-- Loading -->
+        <div class="bar bar-loading bar-energized" ng-if="isLoading">
+          Cargando...
+        </div>   
+    	
+        <br>
+        
+        <!-- Muestra los productos -->
+        <ion-list>
+        <div class="list" ng-show="productos.length">
+          <a class="item item-button-right" ng-repeat="producto in productos" href="#/tab/producto/{{producto.id}}">
+             <strong>{{ producto.nombre }}</strong> 
+             <br>{{producto.tipo}} {{producto.unidades}} {{producto.unidad}}
+             <button class="button sinBorde">
+               <i class="ion-chevron-right"></i>
+             </button>
+           </a>
+        </div>
+        </ion-list>
+
+        <!-- Frase -->
+        <center ng-show="!producto" id="txtPrincipal">
+            <i class="icon ion-chevron-up"></i>
+            <h3><strong>¿Te sientes mal?</strong></h3>
+            <h3>Encuentra algo que te haga sentir mejor</h3>
+        </center>
+        <center ng-show="!isLoading" id="txtPrincipal">
+            <h3 ng-show="!productos.length" ng-hide="!productos">Ninguna coincidencia encontrada.</h3>
+        </center>
+
+    </ion-content>
+</ion-view>

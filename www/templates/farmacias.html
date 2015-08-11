@@ -1,0 +1,24 @@
+<ion-view title="Farmacias">
+
+	<!-- Opciones -->
+		<ion-nav-buttons side="right">
+		      <!-- <button class="button button-icon ion-navicon" ng-click="popover.show()"></button> -->
+		</ion-nav-buttons>
+
+	<!-- Listado de Farmacias -->
+  	<ion-content>
+		<ion-list>
+		    <div class="list">
+			    <a class="item item-button-right" ng-repeat="farmacia in farmacias" href="#/tab/farmacia/{{farmacia.id}}">
+			       <h2>{{ farmacia.nombre }}</h2>
+			       <span class="badge">{{ farmacia.num_sucursales }} Salas</span>
+			       <button class="button sinBorde">
+			         <i class="ion-chevron-right"></i>
+			       </button>
+			     </a>
+			</div>
+		</ion-list>
+	    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" icon="ion-loading-c" on-infinite="loadMore()" distance="20%"></ion-infinite-scroll>
+  	</ion-content>
+
+</ion-view>
